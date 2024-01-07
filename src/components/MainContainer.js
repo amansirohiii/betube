@@ -1,6 +1,12 @@
+import ButtonList from "./ButtonList"
+import VideoContainer from "./VideoContainer"
+
 const MainContainer = () => {
   return (
-    <div>MainContainer</div>
+    <div>
+        <ButtonList/>
+        <VideoContainer/>
+    </div>
   )
 }
 
