@@ -42,7 +42,7 @@ const Sidebar = () => {
   if (!isMenuOpen) return null;
 
   return (
-    <div className='p-5 max-h-screen hover:overflow-y-scroll overflow-hidden overscroll-contain fixed top-[64px] z-50 bg-white text-left w-[280px]'>
+    <div className='p-5 max-h-screen hover:overflow-y-scroll overflow-hidden overscroll-contain fixed top-[64px] z-50 bg-white text-left w-[280px] no-scrollbar'>
       <ul>
         <li className='my-1 p-1 py-2 hover:bg-gray-100 cursor-pointer rounded-lg'><Link  to='/'> <img className='inline-block align-bottom mr-3' src={homeIcon} alt="Home" /> Home</Link ></li>
         <li className='my-1 p-1 py-2 hover:bg-gray-100 cursor-pointer rounded-lg'><Link  to={'/'}> <img className='inline-block align-bottom mr-3' src={shortsIcon} alt="Shorts" /> Shorts</Link ></li>

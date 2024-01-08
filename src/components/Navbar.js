@@ -8,6 +8,7 @@ import youtubeIcon from "../assets/youtube.svg";
 import bellIcon from "../assets/bell.svg";
 import micIcon from "../assets/mic.svg";
 import createIcon from "../assets/create.svg";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -54,15 +55,15 @@ const Navbar = () => {
     <div className="fixed top-0 left-0 right-0 z-50 bg-white select-none">
       <div className="flex flex-row justify-between items-center px-4 py-3">
         <div className="flex flex-row items-center">
-          <div className="w-10 h-10 hover:rounded-full hover:bg-gray-100 cursor-pointer">
+          <div  onClick={toggleMenuHandler} className="w-10 h-10 hover:rounded-full hover:bg-gray-100 cursor-pointer">
             <img
               className="h-6 mt-2 ml-2"
-              onClick={toggleMenuHandler}
+
               src={hamBurgerIcon}
               alt="hamBurgerIcon"
             />
           </div>
-          <img className="w-auto mx-4" src={youtubeIcon} alt="betube-logo" />
+          <Link to="/"><img className="w-auto mx-4" src={youtubeIcon} alt="betube-logo" /></Link>
         </div>
         <div className="relative">
           <div className="flex flex-row relative">

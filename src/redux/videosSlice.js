@@ -7,7 +7,7 @@ const videosSlice = createSlice({
     },
     reducers: {
         addPopularVideos: (state, action)=>{
-            state.popularVideos = action.payload;
+            state.popularVideos= [...state.popularVideos, ...action.payload]
         }
     }
 })
