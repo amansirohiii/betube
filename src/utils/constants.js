@@ -8,3 +8,5 @@ export const SUBSCIPTION_ICON= "https://cdn-icons-png.flaticon.com/128/2989/2989
 export const YOUTUBE_MUSIC="https://www.svgrepo.com/show/520438/youtube-music.svg"
 export const YOUTUBE_VIDEOS_API="https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key="
 export const YOUTUBE_SEARCH_API="https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q="
+export const BACKEND_DEV_SEARCH_API="http://localhost:5000/api/search?q="
+export const BACKEND_SEARCH_API="https://gpt-netflix-backend.vercel.app/api/search?q="
