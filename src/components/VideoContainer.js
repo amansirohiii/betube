@@ -3,6 +3,8 @@ import { YOUTUBE_VIDEOS_API } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { addPopularVideos } from "../redux/videosSlice";
 import VideoCard from "./VideoCard";
+import { Link } from "react-router-dom";
+import { setMenu } from "../redux/appSlice";
 
 
 const VideoContainer = () => {
@@ -10,6 +12,7 @@ const VideoContainer = () => {
   const popularVideos=useSelector(store=>store.videos.popularVideos)
   useEffect(()=>{
     getVideos();
+    dispatch(setMenu(true))
   },[])
   const getVideos=async()=>{
     const data=await fetch(YOUTUBE_VIDEOS_API+ process.env.REACT_APP_YOUTUBE_API);
@@ -20,7 +23,7 @@ const VideoContainer = () => {
 if (!popularVideos) return null;
   return (
     <div className="flex flex-wrap">
-      {popularVideos.map((video)=> <VideoCard key={video.id} info={video}/>)}
+      {popularVideos.map((video)=> <Link to={"/watch?v="+video.id} key={video.id} ><VideoCard info={video}/></Link> )}
 
     </div>
   )

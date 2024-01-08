@@ -7,3 +7,4 @@ export const SHORTS_ICON="https://cdn-icons-png.flaticon.com/128/5856/5856419.pn
 export const SUBSCIPTION_ICON= "https://cdn-icons-png.flaticon.com/128/2989/2989849.png"
 export const YOUTUBE_MUSIC="https://www.svgrepo.com/show/520438/youtube-music.svg"
 export const YOUTUBE_VIDEOS_API="https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key="
+export const YOUTUBE_SEARCH_API="http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q="
