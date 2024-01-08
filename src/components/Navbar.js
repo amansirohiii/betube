@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { BACKEND_SEARCH_API} from "../utils/constants";
-import { toggleMenu } from "../redux/appSlice";
+import { setShowSuggestions, toggleMenu } from "../redux/appSlice";
 import { useEffect, useState } from "react";
 import { cacheResults } from "../redux/searchSlice";
 import hamBurgerIcon from "../assets/hamburger.svg";
@@ -12,15 +12,16 @@ import createIcon from "../assets/create.svg";
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchSuggestions, setSearchSuggestions] = useState("");
-  const [showSuggestions, setShowSuggestions] = useState(false);
+  // const [showSuggestions, setShowSuggestions] = useState(false);
+  const showSuggestions = useSelector(state=>state.app.showSuggestions)
   const dispatch = useDispatch();
   const searchCache = useSelector((state) => state.search);
-  console.log(searchSuggestions);
+  // console.log(searchSuggestions);
   useEffect(() => {
     const timer = setTimeout(() => {
       // console.log(searchQuery);
       if (searchCache[searchQuery]) {
-        setShowSuggestions(searchCache[searchQuery]);
+        setSearchSuggestions(searchCache[searchQuery]);
       } else {
         getSearchSuggestions();
       }
@@ -40,7 +41,6 @@ const Navbar = () => {
           [searchQuery]: json[1],
         })
       );
-      setShowSuggestions(true);
     } catch (error) {
       console.error("Error fetching suggestions:", error);
     }
@@ -69,8 +69,8 @@ const Navbar = () => {
             <input
               onChange={(e) => setSearchQuery(e.target.value)}
               value={searchQuery}
-              onFocus={(e) => setShowSuggestions(true)}
-              onBlur={(e) => setShowSuggestions(false)}
+              onFocus={(e) => dispatch(setShowSuggestions(true))}
+              onBlur={(e) => dispatch(setShowSuggestions(false))}
               className="border rounded-l-full w-[572px] h-10 pl-5 outline-none"
               type="text"
               placeholder="Search"
