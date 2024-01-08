@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   HAMBURGER_MENU,
   USER_ICON,
@@ -7,17 +7,23 @@ import {
 } from "../utils/constants";
 import { toggleMenu } from "../redux/appSlice";
 import { useEffect, useState } from "react";
+import { cacheResults } from "../redux/searchSlice";
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchSuggestions, setSearchSuggestions]= useState("");
   const [showSuggestions, setShowSuggestions] =useState(false);
+  const dispatch = useDispatch();
+  const searchCache = useSelector(state=>state.search)
   // console.log(searchQuery)
   useEffect(() => {
     const timer =  setTimeout(() => {
-      console.log(searchQuery);
-
-      getSearchSuggestions();
+      // console.log(searchQuery);
+      if(searchCache[searchQuery]){
+        setShowSuggestions(searchCache[searchQuery]);
+      }else{
+        getSearchSuggestions();
+      }
     }, 200);
     return () => {
       clearTimeout(timer);
@@ -28,8 +34,10 @@ const Navbar = () => {
     const json = await data.json();
     console.log(json[1]);
     setSearchSuggestions(json[1])
+    dispatch(cacheResults({
+      [searchQuery]: json[1]
+    }))
   };
-  const dispatch = useDispatch();
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
   };
