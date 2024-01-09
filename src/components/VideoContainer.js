@@ -54,7 +54,7 @@ const VideoContainer = () => {
   };
   return (
     <div
-      className={`flex flex-wrap justify-center ${
+      className={`flex flex-wrap justify-evenly ${
         !isMenuOpen ? "" : "ml-[280px]"
       }`}
     >

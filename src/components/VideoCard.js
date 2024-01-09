@@ -9,7 +9,7 @@ const VideoCard = ({info}) => {
     const {channelTitle, title, thumbnails, publishedAt}= snippet;
 
   return (
-    <div className="p-2 m-2 w-72">
+    <div className=" w-72">
         <img className='rounded-lg hover:drop-shadow-xl' alt='thumbnail' src={thumbnails?.medium?.url} />
         <ul className='flex justify-start items-start'>
         <img className='rounded-full w-7 h-7 mt-2 mr-2' alt='thumbnail' src={thumbnails?.default?.url} />
