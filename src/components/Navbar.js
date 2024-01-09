@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { BACKEND_SEARCH_API } from "../utils/constants";
 import { setShowSuggestions, toggleMenu } from "../redux/appSlice";
 import { useEffect, useState } from "react";
-import { cacheResults } from "../redux/searchSlice";
+import { setCacheResults, setSearchQuery } from "../redux/searchSlice";
 import hamBurgerIcon from "../assets/hamburger.svg";
 import youtubeIcon from "../assets/youtube.svg";
 import bellIcon from "../assets/bell.svg";
@@ -13,13 +13,13 @@ import { addSearchVideos, removeSearchVideos } from "../redux/videosSlice";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const [searchQuery, setSearchQuery] = useState("");
   const [searchSuggestions, setSearchSuggestions] = useState("");
   // const [showSuggestions, setShowSuggestions] = useState(false);
   const showSuggestions = useSelector((state) => state.app.showSuggestions);
+  const searchQuery= useSelector(store=>store.search.searchQuery);
   // const searchVideos = useSelector(state=>state.videos.searchVideos)
   const dispatch = useDispatch();
-  const searchCache = useSelector((state) => state.search);
+  const searchCache = useSelector((store) => store.search.cacheResults);
   // console.log(searchSuggestions);
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -40,7 +40,7 @@ const Navbar = () => {
       const json = await response.json();
       setSearchSuggestions(json[1]);
       dispatch(
-        cacheResults({
+        setCacheResults({
           [searchQuery]: json[1],
         })
       );
@@ -60,7 +60,7 @@ const Navbar = () => {
         searchQuery
     );
     const json = await data.json();
-    console.log(json);
+    // console.log(json);
     dispatch(addSearchVideos(json.items));
   };
 
@@ -98,7 +98,7 @@ const Navbar = () => {
           >
             <input
               onChange={(e) => {
-                setSearchQuery(e.target.value);
+                dispatch(setSearchQuery(e.target.value));
                 if (!e.target.value.length) dispatch(removeSearchVideos());
               }}
               value={searchQuery}
@@ -123,7 +123,7 @@ const Navbar = () => {
             {searchQuery && (
               <button
                 onClick={() => {
-                  setSearchQuery("");
+                  dispatch(setSearchQuery(""))
                   dispatch(removeSearchVideos());
                 }}
                 className="absolute hover:bg-gray-200 hover:rounded-full w-9 h-9 right-[8.2rem] top-[2px]"
