@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { BACKEND_SEARCH_API} from "../utils/constants";
+import { BACKEND_SEARCH_API } from "../utils/constants";
 import { setShowSuggestions, toggleMenu } from "../redux/appSlice";
 import { useEffect, useState } from "react";
 import { cacheResults } from "../redux/searchSlice";
@@ -8,13 +8,16 @@ import youtubeIcon from "../assets/youtube.svg";
 import bellIcon from "../assets/bell.svg";
 import micIcon from "../assets/mic.svg";
 import createIcon from "../assets/create.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { addSearchVideos, removeSearchVideos } from "../redux/videosSlice";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [searchSuggestions, setSearchSuggestions] = useState("");
   // const [showSuggestions, setShowSuggestions] = useState(false);
-  const showSuggestions = useSelector(state=>state.app.showSuggestions)
+  const showSuggestions = useSelector((state) => state.app.showSuggestions);
+  // const searchVideos = useSelector(state=>state.videos.searchVideos)
   const dispatch = useDispatch();
   const searchCache = useSelector((state) => state.search);
   // console.log(searchSuggestions);
@@ -33,8 +36,7 @@ const Navbar = () => {
   }, [searchQuery]);
   const getSearchSuggestions = async () => {
     try {
-      const response = await fetch(BACKEND_SEARCH_API+ searchQuery
-      );
+      const response = await fetch(BACKEND_SEARCH_API + searchQuery);
       const json = await response.json();
       setSearchSuggestions(json[1]);
       dispatch(
@@ -50,25 +52,55 @@ const Navbar = () => {
     dispatch(toggleMenu());
   };
 
+  const getSearchResults = async () => {
+    const data = await fetch(
+      "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&key=" +
+        process.env.REACT_APP_YOUTUBE_API +
+        "&q=" +
+        searchQuery
+    );
+    const json = await data.json();
+    console.log(json);
+    dispatch(addSearchVideos(json.items));
+  };
+
+  // if(!searchQuery.length) dispatch(removeSearchVideos())
+
   if (!searchSuggestions) return null;
   return (
     <div className="fixed top-0 left-0 right-0 z-50 bg-white select-none">
       <div className="flex flex-row justify-between items-center px-4 py-3">
         <div className="flex flex-row items-center">
-          <div  onClick={toggleMenuHandler} className="w-10 h-10 hover:rounded-full hover:bg-gray-100 cursor-pointer">
+          <div
+            onClick={toggleMenuHandler}
+            className="w-10 h-10 hover:rounded-full hover:bg-gray-100 cursor-pointer"
+          >
             <img
               className="h-6 mt-2 ml-2"
-
               src={hamBurgerIcon}
               alt="hamBurgerIcon"
             />
           </div>
-          <Link to="/"><img className="w-auto mx-4" src={youtubeIcon} alt="betube-logo" /></Link>
+          <Link to="/">
+            <img className="w-auto mx-4" src={youtubeIcon} alt="betube-logo" />
+          </Link>
         </div>
         <div className="relative">
-          <div className="flex flex-row relative">
+          <form
+            className="flex flex-row relative"
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (!searchQuery.length) return null;
+              getSearchResults(searchQuery);
+              dispatch(setShowSuggestions(false));
+              navigate("/");
+            }}
+          >
             <input
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                if (!e.target.value.length) dispatch(removeSearchVideos());
+              }}
               value={searchQuery}
               onFocus={(e) => dispatch(setShowSuggestions(true))}
               onBlur={(e) => dispatch(setShowSuggestions(false))}
@@ -90,13 +122,16 @@ const Navbar = () => {
             </div>
             {searchQuery && (
               <button
-                onClick={() => setSearchQuery("")}
+                onClick={() => {
+                  setSearchQuery("");
+                  dispatch(removeSearchVideos());
+                }}
                 className="absolute hover:bg-gray-200 hover:rounded-full w-9 h-9 right-[8.2rem] top-[2px]"
               >
                 X
               </button>
             )}
-          </div>
+          </form>
           {showSuggestions && searchSuggestions.length > 0 && (
             <div className="absolute bg-white w-[560px] max-h-[400px] shadow-lg border rounded-lg overflow-y-auto left-3 top-10 z-50 text-left">
               <ul className="py-3">
