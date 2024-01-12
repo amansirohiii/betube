@@ -41,7 +41,7 @@ const Sidebar = () => {
   if (!isMenuOpen) return null;
 
   return (
-    <div className="sm:w-64 w-60 lg:w-64 py-5 pl-5 max-h-screen hover:overflow-y-scroll overflow-hidden overscroll-contain fixed top-[64px] z-50 bg-white text-left no-scrollbar">
+    <div className="sm:w-64 w-60 lg:w-64 py-5 pl-5 max-h-screen hover:overflow-y-scroll overflow-hidden overscroll-contain fixed top-24 sm:top-[64px] z-50 bg-white text-left no-scrollbar">
       <ul>
         <li className="my-1 p-1 py-2 hover:bg-gray-100 cursor-pointer rounded-lg">
           <Link to="/">

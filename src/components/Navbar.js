@@ -70,7 +70,7 @@ const Navbar = () => {
   return (
     <div className="fixed w-screen top-0 left-0 right-0 z-50 bg-white select-none">
       <div className="flex flex-col sm:flex-row justify-between sm:items-center sm:px-4 py-3 px-2">
-        <div className="flex flex-row items-center">
+        <div className="flex flex-row items-center mb-2 sm:mb-0">
           <div
             onClick={toggleMenuHandler}
             className="w-10 h-10 hover:rounded-full hover:bg-gray-100 cursor-pointer"
@@ -82,7 +82,7 @@ const Navbar = () => {
             />
           </div>
           <Link to="/">
-            <img className="w-auto mx-auto sm:mx-4" src={youtubeIcon} alt="betube-logo" />
+            <img className="w-auto mx-32 sm:mx-4" src={youtubeIcon} alt="betube-logo" />
           </Link>
         </div>
         <div className="relative">

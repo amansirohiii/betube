@@ -16,8 +16,8 @@ const VideoContainer = () => {
   useEffect(() => {
     getVideos();
     dispatch(setMenu(false));
-    console.log(window.innerWidth);
-      if (window.innerWidth >= 1300) {
+    // console.log(window.innerWidth);
+      if (window.innerWidth >= 1400) {
         dispatch(setMenu(true));
     };
 
@@ -60,8 +60,8 @@ const VideoContainer = () => {
   };
   return (
     <div
-      className={`flex flex-wrap justify-evenly sm:ml-[280px] ${
-        !isMenuOpen ? "" : ""
+      className={`flex flex-wrap justify-evenly w-screen sm:w-auto ${
+        !isMenuOpen ? "" : "sm:ml-[280px]"
       }`}
     >
       {videosToRender?.map((video) => {
