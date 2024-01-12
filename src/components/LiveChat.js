@@ -22,7 +22,7 @@ const LiveChat = () => {
   }, []);
   return (
     <>
-      <div className="w-screen sm:w-full h-56 sm:h-[500px] py-2 border border-black bg-slate-100 rounded-lg overflow-y-scroll flex flex-col-reverse border-b-0 no-scrollbar">
+      <div className="w-screen sm:w-full h-56 sm:h-[500px] mt-10 p-2 border border-black bg-slate-100 rounded-lg overflow-y-scroll flex flex-col-reverse border-b-0 no-scrollbar">
         {chatMessages.map((message,index) => (
           <ChatMessage key={index} {...message} />
         ))}
