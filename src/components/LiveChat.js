@@ -22,7 +22,7 @@ const LiveChat = () => {
   }, []);
   return (
     <>
-      <div className="w-screen sm:w-11/12 h-56 sm:h-[500px] sm:mt-0 mt-10 p-2 border border-black bg-slate-100 rounded-lg overflow-y-scroll flex flex-col-reverse border-b-0 no-scrollbar">
+      <div className="w-screen sm:w-96 h-56 sm:h-[500px] sm:mt-0 mt-10 p-2 border border-black bg-slate-100 rounded-lg overflow-y-scroll flex flex-col-reverse border-b-0 no-scrollbar">
         {chatMessages.map((message,index) => (
           <ChatMessage key={index} {...message} />
         ))}
@@ -38,7 +38,7 @@ const LiveChat = () => {
           );
           setChatText("")
         }}
-        className="sm:w-11/12 p-2 bg-slate-100 rounded-lg border border-black border-t-0 w-screen flex justify-between"
+        className="sm:w-96 p-2 bg-slate-100 rounded-lg border border-black border-t-0 w-screen flex justify-between"
       >
          <input
           value={chatName}
