@@ -68,7 +68,7 @@ const Navbar = () => {
 
   if (!searchSuggestions) return null;
   return (
-    <div className="fixed w-screen top-0 left-0 right-0 z-50 bg-white select-none itme">
+    <div className="fixed w-screen top-0 left-0 right-0 z-50 bg-white select-none">
       <div className="flex flex-col sm:flex-row justify-between sm:items-center sm:px-4 py-3 px-2">
         <div className="flex flex-row items-center">
           <div
