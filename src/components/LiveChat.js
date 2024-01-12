@@ -22,7 +22,7 @@ const LiveChat = () => {
   }, []);
   return (
     <>
-      <div className="w-screen sm:w-full h-56 sm:h-[500px] mt-10 p-2 border border-black bg-slate-100 rounded-lg overflow-y-scroll flex flex-col-reverse border-b-0 no-scrollbar">
+      <div className="w-screen sm:w-11/12 h-56 sm:h-[500px] sm:mt-0 mt-10 p-2 border border-black bg-slate-100 rounded-lg overflow-y-scroll flex flex-col-reverse border-b-0 no-scrollbar">
         {chatMessages.map((message,index) => (
           <ChatMessage key={index} {...message} />
         ))}
@@ -38,7 +38,7 @@ const LiveChat = () => {
           );
           setChatText("")
         }}
-        className=" p-2 bg-slate-100 rounded-lg border border-black border-t-0 w-screen sm:w-full flex justify-between"
+        className="sm:w-11/12 p-2 bg-slate-100 rounded-lg border border-black border-t-0 w-screen flex justify-between"
       >
          <input
           value={chatName}
@@ -46,7 +46,7 @@ const LiveChat = () => {
             setName(e.target.value);
             console.log(chatText);
           }}
-          className="pl-2 border w-1/4 mr-1 sm:w-96 border-black rounded-sm"
+          className="pl-2 border w-1/4 mr-1 sm:w-4/4 border-black rounded-sm"
           type="text" placeholder="Name"
         />
         <input
@@ -55,7 +55,7 @@ const LiveChat = () => {
             setChatText(e.target.value);
             console.log(chatText);
           }}
-          className="pl-2 border w-3/4 sm:w-96 border-black rounded-sm"
+          className="pl-2 border w-3/4 sm:w-4/4 border-black rounded-sm"
           type="text" placeholder="Message"
         />
         <button className="px-2 mx-2 bg-gray-500 text-white rounded-sm">

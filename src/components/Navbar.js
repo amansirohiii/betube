@@ -87,7 +87,7 @@ const Navbar = () => {
         </div>
         <div className="relative">
           <form
-            className="flex flex-row relative"
+            className="flex flex-row relative justify-center"
             onSubmit={(e) => {
               e.preventDefault();
               if (!searchQuery.length) return null;
@@ -103,7 +103,7 @@ const Navbar = () => {
               }}
               value={searchQuery}
               onFocus={(e) => dispatch(setShowSuggestions(true))}
-              onBlur={(e) => dispatch(setShowSuggestions(false))}
+              // onBlur={(e) => dispatch(setShowSuggestions(false))}
               className="border rounded-l-full w-2/3 sm:w-[572px] h-10 pl-5 outline-none"
               type="text"
               placeholder="Search"
@@ -117,7 +117,7 @@ const Navbar = () => {
                 src="https://cdn-icons-png.flaticon.com/512/482/482631.png"
               />
             </button>
-            <div className="w-10 h-10 hover:rounded-full hover:bg-gray-100 ml-5 cursor-pointer">
+            <div className="hidden sm:flex justify-center w-10 h-10 hover:rounded-full hover:bg-gray-100 ml-5 cursor-pointer">
               <img className="mt-2 ml-2" alt="mic-icon " src={micIcon} />
             </div>
             {searchQuery && (
@@ -133,24 +133,30 @@ const Navbar = () => {
             )}
           </form>
           {showSuggestions && searchSuggestions.length > 0 && (
-            <div className="absolute bg-white w-[560px] max-h-[400px] shadow-lg border rounded-lg overflow-y-auto left-3 top-10 z-50 text-left">
-              <ul className="py-3">
-                {searchSuggestions.map((item) => (
-                  <li
-                    key={item}
-                    className="my-1 p-1 hover:bg-gray-100 cursor-pointer"
-                  >
-                    <img
-                      className="mr-5 h-4 ml-3 inline-block"
-                      alt="search-icon"
-                      src="https://cdn-icons-png.flaticon.com/512/482/482631.png"
-                    />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+  <div className="absolute bg-white w-[560px] max-h-[400px] shadow-lg border rounded-lg overflow-y-auto left-3 top-10 z-50 text-left">
+    <ul className="py-3">
+      {searchSuggestions.map((item) => (
+        <li
+          key={item}
+          className="my-1 p-1 hover:bg-gray-100 cursor-pointer"
+          onClick={() => {
+            dispatch(setSearchQuery(item))
+            getSearchResults(item);
+            dispatch(setShowSuggestions(false))
+          }}
+        >
+          <img
+            className="mr-5 h-4 ml-3 inline-block"
+            alt="search-icon"
+            src="https://cdn-icons-png.flaticon.com/512/482/482631.png"
+          />
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+)}
+
         </div>
         <div className="hidden sm:flex sm:flex-row-reverse justify-around">
           <div className="w-10 h-10 ml-5 cursor-pointer">
