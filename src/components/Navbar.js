@@ -82,7 +82,7 @@ const Navbar = () => {
             />
           </div>
           <Link to="/">
-            <img className="w-auto mx-32 sm:mx-4" src={youtubeIcon} alt="betube-logo" />
+            <img className="w-auto mx-[7.5rem] sm:mx-4" src={youtubeIcon} alt="betube-logo" />
           </Link>
         </div>
         <div className="relative">

@@ -10,7 +10,7 @@ const VideoCard = ({info}) => {
     const {channelTitle, title, thumbnails, publishedAt}= snippet;
 
   return (
-    <div className={` sm:w-72 my-2 ${isMenuOpen ? " " : "w-80 sm:w-[350px]"
+    <div className={`  my-2 ${isMenuOpen ? " sm:w-72 w-80" : "w-80 sm:w-[350px]"
     }`}>
         <img className='rounded-lg hover:drop-shadow-xl w-full' alt='thumbnail' src={thumbnails?.medium?.url} />
         <ul className='flex justify-start items-start'>
