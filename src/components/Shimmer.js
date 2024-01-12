@@ -18,7 +18,7 @@ const ShimmerCard = () => {
 
 const Shimmer = () => {
   return (
-    <div className='flex flex-wrap justify-start ml-[280px]'>
+    <div className='flex flex-wrap justify-start sm:ml-[280px]'>
       {
         Array(20).fill().map((val, index) => {
           return <ShimmerCard key={index} />

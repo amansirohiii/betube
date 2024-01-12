@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
 import {formatCompactNumber} from "../utils/helper"
 const VideoCard = ({info}) => {
-    const searchVideos= useSelector(store=>store.videos.searchVideos)
+    // const searchVideos= useSelector(store=>store.videos.searchVideos)
+    const isMenuOpen= useSelector(store=>store.app.isMenuOpen)
     // console.log(info?.length);
 
     if(info?.length>0) return null;
@@ -9,8 +10,9 @@ const VideoCard = ({info}) => {
     const {channelTitle, title, thumbnails, publishedAt}= snippet;
 
   return (
-    <div className=" w-72">
-        <img className='rounded-lg hover:drop-shadow-xl' alt='thumbnail' src={thumbnails?.medium?.url} />
+    <div className={` w-72 ${isMenuOpen ? " " : "sm:w-[350px]"
+    }`}>
+        <img className='rounded-lg hover:drop-shadow-xl w-full' alt='thumbnail' src={thumbnails?.medium?.url} />
         <ul className='flex justify-start items-start'>
         <img className='rounded-full w-7 h-7 mt-2 mr-2' alt='thumbnail' src={thumbnails?.default?.url} />
         <div>

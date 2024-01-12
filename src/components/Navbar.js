@@ -68,8 +68,8 @@ const Navbar = () => {
 
   if (!searchSuggestions) return null;
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 bg-white select-none">
-      <div className="flex flex-row justify-between items-center px-4 py-3">
+    <div className="fixed w-screen top-0 left-0 right-0 z-50 bg-white select-none itme">
+      <div className="flex flex-col sm:flex-row justify-between sm:items-center sm:px-4 py-3 px-2">
         <div className="flex flex-row items-center">
           <div
             onClick={toggleMenuHandler}
@@ -82,7 +82,7 @@ const Navbar = () => {
             />
           </div>
           <Link to="/">
-            <img className="w-auto mx-4" src={youtubeIcon} alt="betube-logo" />
+            <img className="w-auto mx-auto sm:mx-4" src={youtubeIcon} alt="betube-logo" />
           </Link>
         </div>
         <div className="relative">
@@ -104,7 +104,7 @@ const Navbar = () => {
               value={searchQuery}
               onFocus={(e) => dispatch(setShowSuggestions(true))}
               onBlur={(e) => dispatch(setShowSuggestions(false))}
-              className="border rounded-l-full w-[572px] h-10 pl-5 outline-none"
+              className="border rounded-l-full w-2/3 sm:w-[572px] h-10 pl-5 outline-none"
               type="text"
               placeholder="Search"
               name=""
@@ -152,7 +152,7 @@ const Navbar = () => {
             </div>
           )}
         </div>
-        <div className="flex flex-row-reverse justify-around">
+        <div className="hidden sm:flex sm:flex-row-reverse justify-around">
           <div className="w-10 h-10 ml-5 cursor-pointer">
             <img
               className="mt-1 ml-2 h-7 rounded-full"

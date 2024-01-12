@@ -13,13 +13,11 @@ const WatchPage = () => {
     dispatch(setMenu(false));
   }, []);
   return (
-    <div className="px-20 bg-white col-span-10 pt-6 flex mt-[40px] flex-col">
-      <div className="flex ">
+    <div className="px-5 sm:px-20 bg-white col-span-10 pt-16 sm:pt-6 sm:flex mt-[40px] sm:flex-col">
+      <div className="sm:flex ">
         <div className="">
           <iframe
-            className="rounded-lg m-5"
-            width="900"
-            height="500"
+            className="rounded-lg m-1 sm:m-5 aspect-video w-screen sm:w-[900px] sm:h-[500px]"
             src={"https://www.youtube.com/embed/" + searchParams.get("v")}
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

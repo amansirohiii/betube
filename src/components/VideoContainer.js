@@ -15,8 +15,14 @@ const VideoContainer = () => {
   const [nextPageToken, setNextPageToken] = useState("");
   useEffect(() => {
     getVideos();
-    dispatch(setMenu(true));
+    dispatch(setMenu(false));
+    console.log(window.innerWidth);
+      if (window.innerWidth >= 1300) {
+        dispatch(setMenu(true));
+    };
+
   }, []);
+
   // useEffect(()=>{
   //   window.addEventListener('scroll', infiniteScroll, true);
   //   return () => {
@@ -54,8 +60,8 @@ const VideoContainer = () => {
   };
   return (
     <div
-      className={`flex flex-wrap justify-evenly ${
-        !isMenuOpen ? "" : "ml-[280px]"
+      className={`flex flex-wrap justify-evenly sm:ml-[280px] ${
+        !isMenuOpen ? "" : ""
       }`}
     >
       {videosToRender?.map((video) => {
