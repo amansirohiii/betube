@@ -118,7 +118,7 @@ const Navbar = () => {
               />
             </button>
             <div className="hidden sm:flex justify-center w-10 h-10 hover:rounded-full hover:bg-gray-100 ml-5 cursor-pointer">
-              <img className="mt-2 ml-2" alt="mic-icon " src={micIcon} />
+              <img className="p-1" alt="mic-icon " src={micIcon} />
             </div>
             {searchQuery && (
               <button
